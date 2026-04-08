@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Ding.Assement.Test/Ding.Assement.Test.csproj" Id="91643f2e-2782-4e86-8625-b3d87e76d880" />
+    <Project Path="src/Ding.Assessment.Console/Ding.Assessment.Console.csproj" Id="c4d10608-8ada-414f-b002-2067967c4f35" />
+    <Project Path="src/Ding.Assessment.Core/Ding.Assessment.Core.csproj" Id="249415e9-0f82-4d92-9f32-da6adca43e07" />
+  </Folder>
+</Solution>
