@@ -115,4 +115,42 @@ public class ApplicationTests
             dtos.ElementAt(2).Balance == 120m
         )), Times.Once);
     }
+
+    [Fact]
+    public void ConsolePresentation_PrintWithdrawal_ShouldDisplayNegativeAmount()
+    {
+        // Arrange
+        var presentation = new ConsolePresentation();
+        List<TransactionDto> transactions = [
+            new TransactionDto(TransactionType.Deposit, 1000m, new DateTime(2012, 1, 10, 0, 0, 0, DateTimeKind.Utc), 1000m),
+            new TransactionDto(TransactionType.Deposit, 2000m, new DateTime(2012, 1, 13, 0, 0, 0, DateTimeKind.Utc), 3000m),
+            new TransactionDto(TransactionType.Withdrawal, 500m, new DateTime(2012, 1, 14, 0, 0, 0, DateTimeKind.Utc), 2500m)
+        ];
+
+        using var sw = new StringWriter();
+        TextWriter original = Console.Out;
+        Console.SetOut(sw);
+        string expectedOutput = "Date       || Amount  || Balance\n" +
+                                "14/01/2012 || -500    || 2500\n" +
+                                "13/01/2012 || 2000    || 3000\n" +
+                                "10/01/2012 || 1000    || 1000\n";
+
+        try
+        {
+            // Act
+            presentation.PrintStatement(transactions);
+
+            // Assert
+            string output = sw.ToString();
+
+            Assert.Equal(NoWhitespace(expectedOutput), NoWhitespace(output));
+        }
+        finally
+        {
+            Console.SetOut(original);
+        }
+    }
+
+    private static string NoWhitespace(string s) =>
+        new([.. s.Where(c => !char.IsWhiteSpace(c))]);
 }
