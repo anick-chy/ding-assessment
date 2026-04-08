@@ -59,3 +59,22 @@ A JSON-based repository was chosen to keep the implementation simple and focused
     "FilePath": "transactions.json"
   }
 }
+```
+
+## Run the Application
+```bash
+dotnet run
+```
+
+## Testing
+The solution includes unit tests for:
+
+- Domain logic (balance calculation, validation, invariants)
+- Application behavior (interaction with repository and presentation)
+
+Tests are written using xUnit and Moq.
+
+### Notes
+- The system assumes a single account for simplicity
+- Concurrency is not handled as it is outside the scope of this application
+- Data integrity is assumed at the persistence level
